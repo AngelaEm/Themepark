@@ -24,7 +24,12 @@ namespace Themepark
             counter++;
         }
 
+        public Visitor()
+        {
 
+        }
+
+        
 
         public bool IsVisitorOldEnough(ThemeParkRide rideName)
         {

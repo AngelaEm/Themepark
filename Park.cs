@@ -10,6 +10,15 @@ namespace Themepark
 {
     public class Park
     {
+        public Park()
+        {
+            InitializeVisitors();
+            InitializeThemeParkRides();
+            InitializeZones();
+            InitializeWheelOfFortune();
+            InitializeStaff();
+        }
+
         // Lists
 
         List<Visitor> listWithVisitors = new List<Visitor>();
@@ -60,7 +69,8 @@ namespace Themepark
         Zones south = new Zones("south");
         public void InitializeZones()
         {
-            
+            listWithZones.Add(north);
+            listWithZones.Add(south);
            
             north.AddRide(listWithTeamParkRides[0]);
             north.AddRide(listWithTeamParkRides[1]);
@@ -137,16 +147,23 @@ namespace Themepark
 
         public void PrintZones()
         {
-            foreach(Zones zone in listWithZones)
-            {
-                Console.WriteLine("Dessa zoner finns:");
+            Console.WriteLine("-----------------");
+            Console.WriteLine("Dessa zoner finns:");
+            Console.WriteLine("-----------------\n");
+
+            foreach (Zones zone in listWithZones)
+            {           
                 Console.WriteLine(zone.ZonesName);
+                Console.WriteLine();
             }
+            Console.WriteLine("-----------------\n");
             Console.ReadKey();
+
         }
 
         public void PrintZoneList()
         {
+            Console.Clear();
             Console.WriteLine("North Zone:\n");
             foreach (var ride in north.Rides)
             {
@@ -287,5 +304,28 @@ namespace Themepark
                 return false;
             }
         }
+
+        public bool IsWinningToys(int guess)
+        {
+
+            Random random = new Random();
+            int luckyNumber = random.Next(1, 21);
+
+            if (guess == luckyNumber)
+            {
+                Console.WriteLine("Congratulations, you won a toy!");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Sorry, you did not win this time. Try again later!");
+                return false;
+            }
+        }
+        //public int BuyChocolateWheel(Visitor visitor)
+        //{
+        //    int money = visitor.GetVisitorMoney();
+        //    return money - 10;
+        //}
     }
 }

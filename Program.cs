@@ -3,24 +3,18 @@
     internal class Program
     {
         static Park park = new Park();
-        static Zones zone = new Zones();
+        
+        
         static void Main(string[] args)
-        {
-            park.InitializeVisitors();
-            park.InitializeThemeParkRides();          
-            park.InitializeZones();
-            park.InitializeStaff();
-            park.InitializeWheelOfFortune();
-            
-
+        {                  
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\n*****************************\n");
             Console.WriteLine("Welcome to Angelas Thempark!");
             Console.WriteLine("\n-----------------------------");
             Console.WriteLine("\nPress enter to see menu.");
-            Console.WriteLine("\n*****************************\n");
-           
+            Console.WriteLine("\n*****************************\n");          
+            
             Console.ReadKey();
 
             Menu();
@@ -80,11 +74,23 @@
                         case 5:
 
                             Console.Clear();
+
+                            // Information about wheels
                             Console.WriteLine("Here is information about our Wheels of fortune!");
                             park.PrintWheelOfFortune();
-                            Console.WriteLine("\nChoose a number between 1-10 and spin the wheel.");
-                            int userNumber = Convert.ToInt32(Console.ReadLine());
-                            park.IsWinningCocolate(userNumber);
+
+                            // Spin ToyWheel
+                            Console.WriteLine("\nChoose a number between 1-20 and spin the toywheel.");
+                            int firstUserNumber = Convert.ToInt32(Console.ReadLine());
+                            park.IsWinningToys(firstUserNumber);
+
+                            Console.WriteLine("---------------------------------------------------\n");
+
+                            // Spin ChokolateWheel
+                            Console.WriteLine("\nChoose a number between 1-10 and spin the chocolatewheel.");
+                            int secondUserNumber = Convert.ToInt32(Console.ReadLine());
+                            park.IsWinningCocolate(secondUserNumber);
+     
                             Console.ReadKey();
 
                             break;
@@ -140,7 +146,9 @@
                 switch (menuOption)
                 {
                     case 1:
-                       
+
+                        Console.Clear();
+                        park.PrintZones();
                         park.PrintZoneList();
 
                         break;
