@@ -9,18 +9,22 @@ namespace Themepark
     internal class Zones
     {
         public string ZonesName;
-        public List<ThemeParkRide> rides;
+        public List<ThemeParkRide> Rides;
 
-        public Zones(string zoneName)
+        public Zones(string zonesName)
         {
-            ZonesName = zoneName;
-            List<ThemeParkRide> rides = new List<ThemeParkRide>();
+            ZonesName = zonesName;
+            Rides = new List<ThemeParkRide>();
+
+        }
+        public Zones()
+        {
 
         }
 
         public void AddRide(ThemeParkRide ride)
         {
-            rides.Add(ride);
+            Rides.Add(ride);
         }
        
     }

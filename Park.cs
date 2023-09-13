@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Net.Security;
 using System.Text;
@@ -9,53 +10,28 @@ namespace Themepark
 {
     public class Park
     {
-        // Visitors
-
-        Visitor person1 = new Visitor("Angela", 46, 1.71, 1500);
-        Visitor person2 = new Visitor("Andreas", 47, 1.84, 2000);
-        Visitor person3 = new Visitor("Leo", 12, 1.71, 500);
-        Visitor person4 = new Visitor("Tim", 6, 1.30, 700);
-        Visitor person5 = new Visitor("Mio", 4, 1.11, 1000);
-        Visitor person6 = new Visitor("Nea", 16, 1.75, 700);
-
+        // Lists
 
         List<Visitor> listWithVisitors = new List<Visitor>();
-
-        // ThemeParkRides
-        ThemeParkRide balder = new ThemeParkRide("Balder", 2.5, 1.40, false, 16);
-        ThemeParkRide flumride = new ThemeParkRide("Flumride", 3.5, 1.20, true, 4);
-        ThemeParkRide lisebergshjulet = new ThemeParkRide("Lisebergshjulet", 8.5, 1.25, false, 8);
-        ThemeParkRide gasten = new ThemeParkRide("Hotell Gasten", 5.5, 1.50, false, 9);
-        ThemeParkRide valkyria = new ThemeParkRide("Valkyria", 1.5, 1.45, false, 10);
-        ThemeParkRide colorado = new ThemeParkRide("Colorado", 3.5, 1.20, true, 4);
-
+        
         List<ThemeParkRide> listWithTeamParkRides = new List<ThemeParkRide>();
         
-
-        // Zones
-        Zones north = new Zones("north");
-        Zones south = new Zones("south");
-
         List<Zones> listWithZones = new List<Zones>();
 
-        // Staff
-
-        Staff staff1 = new Staff("Robert", "Cleaner");
-        Staff staff2 = new Staff("Robin", "Ride operator");
-        Staff staff3 = new Staff("Vincent", "Food staff");
-
-
         List<Staff> listWithStaff = new List<Staff>();
-
-        // Wheel of fortune
-
-        WheelOfFortune chocolate = new WheelOfFortune("Chocolate", "different choclate", 0.1, 25);
-        WheelOfFortune toys = new WheelOfFortune("Toywheel", "different toys", 0.05, 10);
 
         List<WheelOfFortune> listWithWheelOfFortune = new List<WheelOfFortune>();
 
         public void InitializeVisitors()
         {
+            Visitor person1 = new Visitor("Angela", 46, 1.71, 1500);
+            Visitor person2 = new Visitor("Andreas", 47, 1.84, 2000);
+            Visitor person3 = new Visitor("Leo", 12, 1.71, 500);
+            Visitor person4 = new Visitor("Tim", 6, 1.30, 700);
+            Visitor person5 = new Visitor("Mio", 4, 1.11, 1000);
+            Visitor person6 = new Visitor("Nea", 16, 1.75, 700);
+
+            
             listWithVisitors.Add(person1);
             listWithVisitors.Add(person2);
             listWithVisitors.Add(person3);
@@ -66,6 +42,13 @@ namespace Themepark
         }
         public void InitializeThemeParkRides()
         {
+            ThemeParkRide balder = new ThemeParkRide("Balder", 2.5, 1.40, false, 16);
+            ThemeParkRide flumride = new ThemeParkRide("Flumride", 3.5, 1.20, true, 4);
+            ThemeParkRide lisebergshjulet = new ThemeParkRide("Lisebergshjulet", 8.5, 1.25, false, 8);
+            ThemeParkRide gasten = new ThemeParkRide("Hotell Gasten", 5.5, 1.50, false, 9);
+            ThemeParkRide valkyria = new ThemeParkRide("Valkyria", 1.5, 1.45, false, 10);
+            ThemeParkRide colorado = new ThemeParkRide("Colorado", 3.5, 1.20, true, 4);
+
             listWithTeamParkRides.Add(balder);
             listWithTeamParkRides.Add(gasten);
             listWithTeamParkRides.Add(valkyria);
@@ -73,21 +56,27 @@ namespace Themepark
             listWithTeamParkRides.Add(lisebergshjulet);
             listWithTeamParkRides.Add(colorado);
         }
-
+        Zones north = new Zones("north");
+        Zones south = new Zones("south");
         public void InitializeZones()
         {
-            // Add rides to zones
-            north.rides.Add(balder);
-            north.rides.Add(gasten);
-            north.rides.Add(valkyria);
+            
+           
+            north.AddRide(listWithTeamParkRides[0]);
+            north.AddRide(listWithTeamParkRides[1]);
+            north.AddRide(listWithTeamParkRides[2]);
 
-            south.rides.Add(flumride);
-            south.rides.Add(lisebergshjulet);
-            south.rides.Add(colorado);
+            south.AddRide(listWithTeamParkRides[3]);
+            south.AddRide(listWithTeamParkRides[4]);
+            south.AddRide(listWithTeamParkRides[5]);
         }
 
         public void InitializeStaff()
         {
+            Staff staff1 = new Staff("Robert", "Cleaner");
+            Staff staff2 = new Staff("Robin", "Ride operator");
+            Staff staff3 = new Staff("Vincent", "Food staff");
+
             listWithStaff.Add(staff1);
             listWithStaff.Add(staff2);
             listWithStaff.Add(staff3);
@@ -95,6 +84,9 @@ namespace Themepark
 
         public void InitializeWheelOfFortune()
         {
+            WheelOfFortune chocolate = new WheelOfFortune("Chocolate", "different choclate", 0.1, 25);
+            WheelOfFortune toys = new WheelOfFortune("Toywheel", "different toys", 0.05, 10);
+
             listWithWheelOfFortune.Add(toys);
             listWithWheelOfFortune.Add(chocolate);
         }
@@ -147,7 +139,27 @@ namespace Themepark
         {
             foreach(Zones zone in listWithZones)
             {
-                Console.WriteLine(zone);
+                Console.WriteLine("Dessa zoner finns:");
+                Console.WriteLine(zone.ZonesName);
+            }
+            Console.ReadKey();
+        }
+
+        public void PrintZoneList()
+        {
+            Console.WriteLine("North Zone:\n");
+            foreach (var ride in north.Rides)
+            {
+                Console.WriteLine("********");
+                Console.WriteLine(ride.Name);
+                Console.WriteLine("********\n");
+            }
+            Console.WriteLine("South Zone:\n");
+            foreach (var ride in south.Rides)
+            {              
+                Console.WriteLine("********");
+                Console.WriteLine(ride.Name);
+                Console.WriteLine("********\n");
             }
         }
 
@@ -226,7 +238,7 @@ namespace Themepark
                 case 1:
 
                     Console.WriteLine("\n*************************************************************************************");
-                    Console.WriteLine($"Hello! I am {staff1.StaffName} and work as a {staff1.StaffRole}. How can I help you?");
+                    Console.WriteLine($"Hello! I am {listWithStaff[0].StaffName} and work as a {listWithStaff[0].StaffRole}. How can I help you?");
                     Console.WriteLine("*************************************************************************************");
 
                     break;
@@ -235,7 +247,7 @@ namespace Themepark
                 case 2:
 
                     Console.WriteLine("\n*************************************************************************************");
-                    Console.WriteLine($"Hello! I am {staff3.StaffName} and work as a {staff3.StaffRole}. How can I help you?");
+                    Console.WriteLine($"Hello! I am {listWithStaff[2].StaffName} and work as a {listWithStaff[2].StaffRole}. How can I help you?");
                     Console.WriteLine("*************************************************************************************");
 
                     break;
@@ -243,7 +255,7 @@ namespace Themepark
                 case 3:
 
                     Console.WriteLine("\n*************************************************************************************");
-                    Console.WriteLine($"Hello! I am {staff2.StaffName} and work as a {staff2.StaffRole}. How can I help you?");
+                    Console.WriteLine($"Hello! I am {listWithStaff[1].StaffName} and work as a {listWithStaff[1].StaffRole}. How can I help you?");
                     Console.WriteLine("************************************************************************************");
 
                     break;

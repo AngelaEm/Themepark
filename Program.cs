@@ -3,16 +3,15 @@
     internal class Program
     {
         static Park park = new Park();
-
-
-
+        static Zones zone = new Zones();
         static void Main(string[] args)
         {
             park.InitializeVisitors();
             park.InitializeThemeParkRides();          
-            //park.InitializeZones();
+            park.InitializeZones();
             park.InitializeStaff();
             park.InitializeWheelOfFortune();
+            
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -31,14 +30,10 @@
         {
             bool continueRunning = true;
 
-
-
             Console.Clear();
 
             while (continueRunning)
             {
-
-
                 string[] menuOptions = new string[] { "1.\tWelcome", "2.\tInformation about Park", "3.\tGo on a ride", "4.\tInteract with staff", "5.\tWheel of fortune", "6.\tFood", "7.\tGood Bye" };
 
                 Console.WriteLine("--------Menu--------\n");
@@ -112,18 +107,14 @@
                             Console.WriteLine("Please chose number from 1-7");
                             break;
                     }
-
-
                 }
 
                 catch (Exception)
                 {
-
                     Console.WriteLine("Invalid input"); ;
                 }
                 Console.Clear();
             }
-
         }
 
 
@@ -149,8 +140,8 @@
                 switch (menuOption)
                 {
                     case 1:
-
-                        park.PrintZones();
+                       
+                        park.PrintZoneList();
 
                         break;
 
@@ -192,8 +183,6 @@
 
                 Console.WriteLine("Invalid input");
             }
-
-
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Themepark
         private int VisitorAge;
         private double VisitorHeight;
         private int VisitorMoney;
+        public int counter = 0;
 
      
         public Visitor(string visitorName, int visitorAge, double visitorHeight, int visitorMoney)
@@ -20,7 +21,7 @@ namespace Themepark
             VisitorAge = visitorAge;
             VisitorHeight = visitorHeight;
             VisitorMoney = visitorMoney;
-
+            counter++;
         }
 
 
@@ -53,10 +54,6 @@ namespace Themepark
             }
         }
 
-       
-
-        
-
         public string GetVisitorName()
         {
             return VisitorName;
@@ -72,8 +69,6 @@ namespace Themepark
         public int GetVisitorMoney()
         {
             return VisitorMoney;
-        }
-
-        
+        }     
     }
 }
